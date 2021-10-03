@@ -1,0 +1,768 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="hasGone" sid="632515002851030" static="0" type="number">0</variable>
+        <variable constant="0" name="lastColor" sid="854150531966986" static="0" type="text"></variable>
+        <variable constant="0" name="Winner" sid="458454055970451" static="0" type="text"></variable>
+        <variable constant="0" name="maxSpeed" sid="248599878513674" static="0" type="number">30</variable>
+        <variable constant="0" name="Turn" sid="615866568531068" static="0" type="text">player</variable>
+        <event-block sid="120150682019738">
+            <conditions>
+                <condition id="1" name="On any click" sid="365285021634847" type="Mouse" />
+                <condition id="-14" name="Compare variable" sid="808033279497570" type="System">
+                    <param id="0" name="Variable">Winner</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">&quot;&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="903395457050853" type="System">
+                    <param id="0" name="Variable">Winner</param>
+                    <param id="1" name="Value">&quot;&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="642860608004290" type="System">
+                    <param id="0" name="Variable">lastColor</param>
+                    <param id="1" name="Value">&quot;&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="811709612964971" type="System">
+                    <param id="0" name="Variable">hasGone</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="550664321679286" type="System">
+                    <param id="0" name="Variable">Turn</param>
+                    <param id="1" name="Value">&quot;player&quot;</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="360172406086780" type="System">
+                    <param id="0" name="Layout">start</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="844251671330763">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="177931478839622" type="System">
+                    <param id="0" name="Interval (seconds)">0.01</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-21" name="Rotate toward position" sid="175466690219835" type="Blaster">
+                    <param id="0" name="Degrees">30</param>
+                    <param id="1" name="X">Mouse.X</param>
+                    <param id="2" name="Y">mouse.Y</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="198790531932666">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="481594866151312" type="System">
+                            <param id="0" name="Variable">Winner</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;ai&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="853146353020094" type="Winner">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="0" name="Set text" sid="281784314199734" type="Winner">
+                            <param id="0" name="Text">&quot;You Lost!&quot;</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="402124042445595" type="restart">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="460946664446721">
+                            <conditions>
+                                <condition id="1" name="On any click" sid="427578601210946" type="Mouse" />
+                            </conditions>
+                            <actions>
+                                <action id="-2" name="Go to layout" sid="885201972018622" type="System">
+                                    <param id="0" name="Layout">start</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="262628570274594">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="817713944998316" type="System">
+                            <param id="0" name="Variable">Winner</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;player&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="386870804854760" type="Winner">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="0" name="Set text" sid="505724868910726" type="Winner">
+                            <param id="0" name="Text">&quot;You Won!&quot;</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="348448570319906" type="restart">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="800751333661593">
+            <conditions>
+                <condition behavior="Physics" id="1" name="Compare velocity" sid="314662202809725" type="blue">
+                    <param id="0" name="Which">1</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">maxSpeed</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Physics" id="15" name="Set velocity" sid="510580815075311" type="blue">
+                    <param id="0" name="X component">Self.Physics.VelocityX</param>
+                    <param id="1" name="Y component">maxSpeed</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="930503364957897">
+            <conditions>
+                <condition behavior="Physics" id="1" name="Compare velocity" sid="332586959520818" type="red">
+                    <param id="0" name="Which">1</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">maxSpeed</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Physics" id="15" name="Set velocity" sid="785594193853181" type="red">
+                    <param id="0" name="X component">Self.Physics.VelocityX</param>
+                    <param id="1" name="Y component">maxSpeed</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="217079775688239">
+            <conditions>
+                <condition behavior="Physics" id="1" name="Compare velocity" sid="841090747256613" type="darkBlue">
+                    <param id="0" name="Which">1</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">maxSpeed</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Physics" id="15" name="Set velocity" sid="347782284073113" type="darkBlue">
+                    <param id="0" name="X component">Self.Physics.VelocityX</param>
+                    <param id="1" name="Y component">maxSpeed</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="559374443440900">
+            <conditions>
+                <condition behavior="Physics" id="1" name="Compare velocity" sid="982162262996350" type="yellow">
+                    <param id="0" name="Which">1</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">maxSpeed</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Physics" id="15" name="Set velocity" sid="678143300059897" type="yellow">
+                    <param id="0" name="X component">Self.Physics.VelocityX</param>
+                    <param id="1" name="Y component">maxSpeed</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="957960706549392">
+            <conditions>
+                <condition behavior="Physics" id="1" name="Compare velocity" sid="208604933005037" type="green">
+                    <param id="0" name="Which">1</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">maxSpeed</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Physics" id="15" name="Set velocity" sid="981087868388043" type="green">
+                    <param id="0" name="X component">Self.Physics.VelocityX</param>
+                    <param id="1" name="Y component">maxSpeed</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="377670743511224">
+            <conditions>
+                <condition id="-4" name="Is outside layout" sid="427211272067838" type="blue" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="827947640285555" type="blue" />
+            </actions>
+        </event-block>
+        <event-block sid="961083464293773">
+            <conditions>
+                <condition id="-4" name="Is outside layout" sid="705498642233219" type="darkBlue" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="250408035280652" type="darkBlue" />
+            </actions>
+        </event-block>
+        <event-block sid="828154653642287">
+            <conditions>
+                <condition id="-4" name="Is outside layout" sid="388008328354914" type="green" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="425802836733188" type="green" />
+            </actions>
+        </event-block>
+        <event-block sid="459765207786979">
+            <conditions>
+                <condition id="-4" name="Is outside layout" sid="328486772695257" type="red" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="486319699513307" type="red" />
+            </actions>
+        </event-block>
+        <event-block sid="129852405787039">
+            <conditions>
+                <condition id="-4" name="Is outside layout" sid="483220954061091" type="yellow" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="193280360355044" type="yellow" />
+            </actions>
+        </event-block>
+        <event-block sid="498372345663632">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="560590410901704" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable constant="0" name="val" sid="644688354026377" static="0" type="number">0</variable>
+                <event-block sid="517253836720594">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="550811763892483" type="System">
+                            <param id="0" name="Object">spawner</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="888816937847947" type="System">
+                            <param id="0" name="Variable">val</param>
+                            <param id="1" name="Value">random(0, 6)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="541296084053248">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="948459527961473" type="System">
+                                    <param id="0" name="Variable">val</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">01</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="443558427330780" type="System">
+                                    <param id="0" name="Variable">val</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="595180211363090" type="spawner">
+                                    <param id="0" name="Object">green</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="360353285743619">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="455080649523447" type="System">
+                                    <param id="0" name="Variable">val</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="126324802267243" type="System">
+                                    <param id="0" name="Variable">val</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">01</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="900447462346355" type="spawner">
+                                    <param id="0" name="Object">yellow</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="666447398754427">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="778251517260849" type="System">
+                                    <param id="0" name="Variable">val</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="429141258872578" type="System">
+                                    <param id="0" name="Variable">val</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">3</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="490524782921885" type="spawner">
+                                    <param id="0" name="Object">darkBlue</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="228128039885363">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="833471432220772" type="System">
+                                    <param id="0" name="Variable">val</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">3</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="904472728416609" type="System">
+                                    <param id="0" name="Variable">val</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">4</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="430144077258125" type="spawner">
+                                    <param id="0" name="Object">blue</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="440922248089121">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="585040700389235" type="System">
+                                    <param id="0" name="Variable">val</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">4</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="184662386618315" type="spawner">
+                                    <param id="0" name="Object">red</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="147297997656416">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="428308508342551" type="black">
+                    <param id="0" name="Object">ground</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="148753012623874" type="System">
+                    <param id="0" name="Variable">Winner</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="849086245582490" type="System">
+                    <param id="0" name="Variable">Winner</param>
+                    <param id="1" name="Value">&quot;ai&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="305183830094770">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="480434087798900" type="white">
+                    <param id="0" name="Object">ground</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="531041091918834" type="System">
+                    <param id="0" name="Variable">Winner</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="590968131591499" type="System">
+                    <param id="0" name="Variable">Winner</param>
+                    <param id="1" name="Value">&quot;player&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="292979461098640">
+            <conditions>
+                <condition id="0" name="On click" sid="179912442484870" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="881903307265705" type="System">
+                    <param id="0" name="Variable">Turn</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;player&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="539614976197029" type="sphere" />
+                <action id="-9" name="Set value" sid="721812515531162" type="System">
+                    <param id="0" name="Variable">lastColor</param>
+                    <param id="1" name="Value">&quot;&quot;</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="407952755315622" type="Blaster">
+                    <param id="0" name="Object">sphere</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action behavior="Physics" id="1" name="Apply force towards position" sid="416445419847043" type="sphere">
+                    <param id="0" name="Force">0.8</param>
+                    <param id="1" name="X">Mouse.X</param>
+                    <param id="2" name="Y">Mouse.Y</param>
+                    <param id="3" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="426588291969482" type="System">
+                    <param id="0" name="Variable">Turn</param>
+                    <param id="1" name="Value">&quot;ai&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="867068149099707" type="System">
+                    <param id="0" name="Variable">hasGone</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <variable constant="0" name="x" sid="880908452690353" static="0" type="number">0</variable>
+        <variable constant="0" name="y" sid="445959569443052" static="0" type="number">0</variable>
+        <event-block sid="890911972881865">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="629389415251339" type="System">
+                    <param id="0" name="Variable">Turn</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;ai&quot;</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="226639779757199" type="System">
+                    <param id="0" name="Variable">hasGone</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="736276166141735" type="System">
+                    <param id="0" name="Variable">hasGone</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-16" name="Wait" sid="211449214180260" type="System">
+                    <param id="0" name="Seconds">3</param>
+                </action>
+                <action id="-9" name="Set value" sid="834410076289060" type="System">
+                    <param id="0" name="Variable">x</param>
+                    <param id="1" name="Value">black.X</param>
+                </action>
+                <action id="-9" name="Set value" sid="114947872714589" type="System">
+                    <param id="0" name="Variable">y</param>
+                    <param id="1" name="Value">black.Y</param>
+                </action>
+                <action id="-9" name="Destroy" sid="475902485737911" type="sphere" />
+                <action id="-9" name="Set value" sid="823695882856442" type="System">
+                    <param id="0" name="Variable">lastColor</param>
+                    <param id="1" name="Value">&quot;&quot;</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="661142027755297" type="ai">
+                    <param id="0" name="Object">sphere</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action behavior="Physics" id="1" name="Apply force towards position" sid="749030660106161" type="sphere">
+                    <param id="0" name="Force">0.8</param>
+                    <param id="1" name="X">x</param>
+                    <param id="2" name="Y">y</param>
+                    <param id="3" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="506075572878674" type="System">
+                    <param id="0" name="Variable">Turn</param>
+                    <param id="1" name="Value">&quot;player&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="273594095398638">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="444775608414894" type="sphere">
+                    <param id="0" name="Object">red</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block any="1" sid="437842070845197">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="241312414762151" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="200012496204249" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;red&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="437656437282326" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Value">&quot;red&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="221594755628971">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="361113902793001" type="System">
+                                    <param id="0" name="Object">red</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="547940100488488" type="red">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="X co-ordinate">sphere.X - 6</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="686886987126895" type="red">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="X co-ordinate">sphere.X + 6</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="314216306618618" type="red">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">sphere.Y - 6</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="564373652825089" type="red">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Y co-ordinate">sphere.Y + 6</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="357178689054671" type="red" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="228607217768464">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="855478896076287" type="sphere">
+                    <param id="0" name="Object">blue</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block any="1" sid="898761613082731">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="911636643809443" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="542519680505734" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;blue&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="276890902824240" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Value">&quot;blue&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="332833880200668">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="797412706539168" type="System">
+                                    <param id="0" name="Object">blue</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="751562828525320" type="blue">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="X co-ordinate">sphere.X - 6</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="292177595965743" type="blue">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="X co-ordinate">sphere.X + 6</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="755300928289252" type="blue">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">sphere.Y - 6</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="234223745966487" type="blue">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Y co-ordinate">sphere.Y + 6</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="491654024843143" type="blue" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="742903964733603">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="162063231779197" type="sphere">
+                    <param id="0" name="Object">darkBlue</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block any="1" sid="138081012815656">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="898790559161927" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="303172694158455" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;darkBlue&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="641078324691848" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Value">&quot;darkBlue&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="364752790980557">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="998803227508380" type="System">
+                                    <param id="0" name="Object">darkBlue</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="322352391614664" type="darkBlue">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="X co-ordinate">sphere.X - 6</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="897233858375578" type="darkBlue">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="X co-ordinate">sphere.X + 6</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="740860074596039" type="darkBlue">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">sphere.Y - 6</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="448654495086605" type="darkBlue">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Y co-ordinate">sphere.Y + 6</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="746711082473980" type="darkBlue" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="263777693186669">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="669974765098562" type="sphere">
+                    <param id="0" name="Object">green</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block any="1" sid="979762869046677">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="608382942815459" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="556349157293446" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;green&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="612184720332334" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Value">&quot;green&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="838125266095298">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="862555315630621" type="System">
+                                    <param id="0" name="Object">green</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="112421422175824" type="green">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="X co-ordinate">sphere.X - 6</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="960009106866956" type="green">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="X co-ordinate">sphere.X + 6</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="471457579470808" type="green">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">sphere.Y - 6</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="816314394030819" type="green">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Y co-ordinate">sphere.Y + 6</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="495268430284087" type="green" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="550894703709583">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="347921404037523" type="sphere">
+                    <param id="0" name="Object">yellow</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block any="1" sid="206895176298703">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="601865520428631" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="556267412375724" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;yellow&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="471582473563332" type="System">
+                            <param id="0" name="Variable">lastColor</param>
+                            <param id="1" name="Value">&quot;yellow&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="515874188499164">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="550009098104586" type="System">
+                                    <param id="0" name="Object">yellow</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="328120646919203" type="yellow">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="X co-ordinate">sphere.X - 6</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="425331224197088" type="yellow">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="X co-ordinate">sphere.X + 6</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="587099035579392" type="yellow">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">sphere.Y - 6</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="809942082606469" type="yellow">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Y co-ordinate">sphere.Y + 6</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="724458892103668" type="yellow" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
